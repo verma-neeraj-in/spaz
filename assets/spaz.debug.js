@@ -164,11 +164,11 @@ Spaz.dump = function(msg) {
 }
 
 
-Spaz.Debug.dumpProps = function(obj, objName) {
-	Spaz.dump('dumping '+objName);
+Spaz.Debug.showProps = function(obj, objName) {
+	air.trace('dumping '+objName);
 	var result = "";
 	for (var i in obj) {
 	   result += objName + "." + i + " = " + obj[i] + "\n";
 	}
-	Spaz.dump(result, 'dir');
+	air.trace(result);
 }
