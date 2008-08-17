@@ -51,6 +51,12 @@ Spaz.initialize = function() {
 	
 	air.trace('root init begin');
 
+   /*
+		create user themes and plugins dirs if necessary
+		- must do this early on
+	*/
+   Spaz.createUserDirs();
+
    /***************************
 	 * Load prefs 
 	 **************************/
@@ -212,10 +218,7 @@ Spaz.initialize = function() {
 	
 	
 	Spaz.dump('ended document.ready()');
-		
 
-   // create user themes and plugins dirs if necessary
-   Spaz.createUserDirs();
 
 }
 
