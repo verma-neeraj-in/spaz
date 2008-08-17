@@ -76,9 +76,7 @@ Spaz.Prefs.defaultPreferences = {
     'twitter-source': 'spaz',
 
     'dock-refreshinterval': 500,
-    'dock-displayunreadbadge': true,
-    'dock-unreadbadgecolor': "red",
-    'dock-unreadbadgeshape': "classic"
+    'dock-displayunreadbadge': true
 }
 
 
@@ -515,23 +513,7 @@ Spaz.Prefs.changeMethods = {
         setFromUI: function(value) {
             return value;
         }
-    },
-   'dock-unreadbadgecolor': {
-       setUI: function(value) {
-           $('#dock-unreadbadgecolor').val(value);
-       },
-       onChange: function(value) {
-           Spaz.Dock.setColor(value);
-       }
-   },
-   'dock-unreadbadgeshape': {
-       setUI: function(value) {
-           $('#dock-unreadbadgeshape').val(value);
-       },
-       onChange: function(value) {
-           Spaz.Dock.setShape(value);
-       }
-   }
+    }
 }
 
 
@@ -639,8 +621,6 @@ Spaz.Prefs.initUI = function() {
     $('#services-pingfm-sendreplies').bind('change', Spaz.Prefs.setFromUI);
     $('#dock-refreshinterval').bind('change', Spaz.Prefs.setFromUI);
     $('#dock-displayunreadbadge').bind('change', Spaz.Prefs.setFromUI);
-    $('#dock-unreadbadgecolor').bind('change', Spaz.Prefs.setFromUI);
-    $('#dock-unreadbadgeshape').bind('change', Spaz.Prefs.setFromUI);
 
 };
 
