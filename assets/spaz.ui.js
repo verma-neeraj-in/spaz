@@ -817,7 +817,7 @@ Spaz.UI.cleanupTimeline = function(timelineid, suppressNotify, suppressScroll) {
 	
 	var numentries = $('#'+timelineid + ' div.timeline-entry').length;
 	
-	time.start('sortTimeline');
+// 	time.start('sortTimeline');
 	
 	if (numentries > 1) {
 		Spaz.dump('Sorting timeline');
@@ -825,7 +825,7 @@ Spaz.UI.cleanupTimeline = function(timelineid, suppressNotify, suppressScroll) {
 	} else {
 		air.trace('not sorting');
 	}
-	time.stop('sortTimeline');
+// 	time.stop('sortTimeline');
 	
 	// time.start('reverseTimeline');
 	// Spaz.dump('Reversing timeline');
@@ -834,7 +834,7 @@ Spaz.UI.cleanupTimeline = function(timelineid, suppressNotify, suppressScroll) {
 	
 	// return;
 
-	time.start('removeEvenOdd-convertPostTimes');
+// 	time.start('removeEvenOdd-convertPostTimes');
 	
 	$("#"+timelineid + ' .timeline-entry').removeClass('even') .removeClass('odd');
 
@@ -853,33 +853,33 @@ Spaz.UI.cleanupTimeline = function(timelineid, suppressNotify, suppressScroll) {
 	// 	.removeClass('even') 
 	// 	.removeClass('odd');
 		
-	time.stop('removeEvenOdd-convertPostTimes');
+// 	time.stop('removeEvenOdd-convertPostTimes');
 	
 	Spaz.dump("# of Timeline-entries = " +$("#"+timelineid + ' .timeline-entry').length)
 	
 	//Spaz.dump($("#"+timelineid).html());
 	
-	time.start('setNotificationTimeout');
+// 	time.start('setNotificationTimeout');
 	// we delay on notification of new entries because stuff gets 
 	// really confused and wonky if you fire it off right away
 	if (!suppressNotify) {
 		Spaz.dump('Set timeout for notifications')
 		setTimeout(Spaz.UI.notifyOfNewEntries, 1000);
 	}
-	time.stop('setNotificationTimeout');
+// 	time.stop('setNotificationTimeout');
 
 
-	time.start('applyEvenOdd');
+// 	time.start('applyEvenOdd');
 	// apply even class
 	$("#"+timelineid + ' .timeline-entry:nth-child(even)').addClass('even');
 	
 	// apply odd class
 	$("#"+timelineid + ' .timeline-entry:nth-child(odd)').addClass('odd');
-	time.stop('applyEvenOdd');
+// 	time.stop('applyEvenOdd');
 	
 	
 
-	time.start('scrollTimeline');
+// 	time.start('scrollTimeline');
 	if (!suppressScroll) {
 		if ($("#"+timelineid + ' .timeline-entry:eq(0)').length > 0) {
 			// scroll to top
@@ -895,13 +895,13 @@ Spaz.UI.cleanupTimeline = function(timelineid, suppressNotify, suppressScroll) {
 		
 		}
 	}
-	time.stop('scrollTimeline');
+// 	time.stop('scrollTimeline');
 		
 	
 	var cleanupTweets = $("div.needs-cleanup", "#"+timelineid);
 	
 	
-	time.start('addProtectedPostInd');
+// 	time.start('addProtectedPostInd');
 	// add protected post indicators
 /*	cleanupTweets.find("span.status-protected").each(function(i) {
 		var jqprtct = $(this);
@@ -911,16 +911,16 @@ Spaz.UI.cleanupTimeline = function(timelineid, suppressNotify, suppressScroll) {
 			jqprtct.html('');
 		}
 	});*/
-	time.stop('addProtectedPostInd');
+// 	time.stop('addProtectedPostInd');
 	
-	time.start('bindOnceFadein');
+// 	time.start('bindOnceFadein');
 	cleanupTweets.find('img.user-image').one('load', function() {
 		// alert('fadingIn');
 		$(this).fadeTo('500','1.0');
 	});
-	time.stop('bindOnceFadein');
+// 	time.stop('bindOnceFadein');
 	
-	time.start('highlightReplies');
+// 	time.start('highlightReplies');
 	// highlight all messages that mention @username
 	cleanupTweets.find(".status-text").each( function(i) {
 		var re = new RegExp('@'+Spaz.Prefs.getUser(), 'i');
@@ -929,12 +929,12 @@ Spaz.UI.cleanupTimeline = function(timelineid, suppressNotify, suppressScroll) {
 			$(this).parents('div.needs-cleanup').addClass('reply');
 		}
 	})
-	time.stop('highlightReplies');
+// 	time.stop('highlightReplies');
 	
-	time.start('removeCleanupClass');
+// 	time.start('removeCleanupClass');
 	// remove the needs-cleanup and show
 	cleanupTweets.css('display', '').removeClass('needs-cleanup');
-	time.stop('removeCleanupClass');
+// 	time.stop('removeCleanupClass');
 
 
 	/* clean up the .status-text */
@@ -942,7 +942,7 @@ Spaz.UI.cleanupTimeline = function(timelineid, suppressNotify, suppressScroll) {
 	// make it here so we don't instantiate on every loopthrough
 	var md = new Showdown.converter();
 	
-	time.start('cleanupStatusText');
+// 	time.start('cleanupStatusText');
 	cleanupTweets.find("div.status-text").each(function(i){
 
 		// fix extra ampersand encoding
@@ -1045,10 +1045,10 @@ Spaz.UI.cleanupTimeline = function(timelineid, suppressNotify, suppressScroll) {
 		
 		}
 	});
-	time.stop('cleanupStatusText');
+// 	time.stop('cleanupStatusText');
 	
 
-	time.start('removeExtras');
+// 	time.start('removeExtras');
 	/*
 		remove extra entries
 	*/
@@ -1060,7 +1060,7 @@ Spaz.UI.cleanupTimeline = function(timelineid, suppressNotify, suppressScroll) {
 		Spaz.dump("numEntries is "+ numEntries + " > " + Spaz.Prefs.get('timeline-maxentries') + "; removing last "+diff+" entries");
 		tweets.slice(diff*-1).remove();
 	}
-	time.stop('removeExtras');
+// 	time.stop('removeExtras');
 	
 
 	
