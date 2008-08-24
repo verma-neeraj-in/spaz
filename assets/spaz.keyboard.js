@@ -36,7 +36,7 @@ Spaz.Keyboard.setShortcuts = function() {
 
 	shortcut.add('Shift+F5', function() {
 		Spaz.UI.clearCurrentTimeline();
-		Spaz.UI.reloadCurrentTab(true);
+		Spaz.UI.reloadCurrentTab(true, true);
 		Spaz.restartReloadTimer();
 	})
 	
