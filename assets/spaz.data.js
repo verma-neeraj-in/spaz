@@ -216,11 +216,14 @@ Spaz.Data.update = function(msg, username, password) {
 			
 			// We mark it as read in the db
 			Spaz.DB.markEntryAsRead(entry.id);
+			
+			// Prepend this to the timeline (don't scroll to top)
 			Spaz.UI.addItemToTimeline(entry, Spaz.Section.friends, true);
 			
 			// cleanup, but suppress the notifications by passing "true" as 2nd param
 			// surpress scrollTo with 3rd param
-			Spaz.UI.cleanupTimeline(Spaz.Section.friends.timeline, true, true);
+			// don't sort with 4th param
+			Spaz.UI.cleanupTimeline(Spaz.Section.friends.timeline, true, true, true);
 		
 			Spaz.UI.entryBox.reset();
 			Spaz.dump('reset entryBox (Spry)');
