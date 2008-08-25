@@ -92,9 +92,9 @@ Spaz.Section.init = function() {
 			
 			// time.stop('cleanup');
 			
-			// time.setReportMethod( function(l) { air.trace("TIMER====================\n"+l.join("\n")) });
-			// time.setLineReportMethod(function(l) { air.trace(l) });
-			
+			time.setReportMethod( function(l) { air.trace("TIMER====================\n"+l.join("\n")) });
+			time.setLineReportMethod(function(l) { air.trace(l) });
+			// 
 			// time.report();
 		},
 	}

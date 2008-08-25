@@ -536,7 +536,7 @@ Spaz.UI.showUserContextMenu = function(jq, screen_name) {
 
 
 
-Spaz.UI.addItemToTimeline = function(entry, section, mark_as_read) {
+Spaz.UI.addItemToTimeline = function(entry, section, mark_as_read, prepend) {
 	// alert('adding:'+entry.id)
 	
 	if (entry.error) {
@@ -607,9 +607,13 @@ Spaz.UI.addItemToTimeline = function(entry, section, mark_as_read) {
 		// air.trace(JSON.stringify(entry));
 		// air.trace(JSON.stringify(jqentry[0].outerHTML));
 		
+		$('#'+timelineid).prepend(jqentry);
+		// if (prepend) {
+		// 	$('#'+timelineid).prepend(jqentry);
+		// } else {
+		// 	$('#'+timelineid).append(jqentry);
+		// }
 		
-		
-		$('#'+timelineid).append(jqentry);
 		
 		
 		
@@ -677,18 +681,25 @@ Spaz.UI.markEntryAsRead = function(el) {
 
 
 
-Spaz.UI.sortTimeline = function(timelineid, reverse) {
-	var cells = $('#'+timelineid+' .timeline-entry.needs-cleanup');
+Spaz.UI.sortTimeline = function(timelineid, reverse, sort_all) {
+	// if (sort_all) {
+		var cells = $('#'+timelineid+' div.timeline-entry');
+	// } else {
+		// var cells = $('#'+timelineid+' div.timeline-entry.needs-cleanup');
+	// }
+	
 	
 	// Spaz.dump('cells length:'+cells.length);
-	
+	time.start('sortTimeline');
 	if (reverse) {
+		// cells.sort(Spaz.UI.sortTweetElements, true).remove().prependTo('#'+timelineid);
 		cells.sort(Spaz.UI.sortTweetElements, true).remove().prependTo('#'+timelineid);
 	} else {
 		cells.sort(Spaz.UI.sortTweetElements, true).remove().appendTo('#'+timelineid);
 	}
+	time.stop('sortTimeline');
 	
-	
+	// time.report();
 	// Spaz.dump('done sorting');
 }
 
@@ -813,13 +824,13 @@ Spaz.UI.notify = function(message, title, where, duration, icon, force) {
 
 
 // cleans up and parses stuff in timeline's tweets
-Spaz.UI.cleanupTimeline = function(timelineid, suppressNotify, suppressScroll) {
+Spaz.UI.cleanupTimeline = function(timelineid, suppressNotify, suppressScroll, skip_sort) {
 	
 	var numentries = $('#'+timelineid + ' div.timeline-entry').length;
 	
 // 	time.start('sortTimeline');
 	
-	if (numentries > 1) {
+	if (numentries > 1 && !skip_sort) {
 		Spaz.dump('Sorting timeline');
 		Spaz.UI.sortTimeline(timelineid, true);
 	} else {
@@ -836,7 +847,7 @@ Spaz.UI.cleanupTimeline = function(timelineid, suppressNotify, suppressScroll) {
 
 // 	time.start('removeEvenOdd-convertPostTimes');
 	
-	$("#"+timelineid + ' .timeline-entry').removeClass('even') .removeClass('odd');
+	$("#"+timelineid + ' .timeline-entry').removeClass('even').removeClass('odd');
 
 	$("#"+timelineid + ' a.status-created-at').each(function(i) {
 		$(this).text( get_relative_time( $(this).attr('data-created-at') ) );
