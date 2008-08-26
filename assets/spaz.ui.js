@@ -394,6 +394,8 @@ Spaz.UI.markCurrentTimelineAsRead = function() {
 		Spaz.DB.markEntryAsRead( Spaz.UI.getStatusIdFromElement(this) );
 		Spaz.UI.markEntryAsRead(this);
 	} )
+
+	$().trigger('UNREAD_COUNT_CHANGED');
 	
 };
 
@@ -599,6 +601,7 @@ Spaz.UI.addItemToTimeline = function(entry, section, mark_as_read, prepend) {
 					// air.trace("Entry " + entry.id + " is read");
 					jqentry.addClass('read');
 					jqentry.removeClass('new');
+					$().trigger('UNREAD_COUNT_CHANGED');
 				}
 			});
 		}

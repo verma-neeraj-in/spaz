@@ -58,6 +58,7 @@ Spaz.Section.init = function() {
 		onAjaxComplete: function(url,xhr,msg){
 			// time.start('onSectionAjaxComplete');
 			Spaz.Data.onSectionAjaxComplete(this,url,xhr,msg);
+			// air.trace('Triggering UNREAD_COUNT_CHANGED');
 			// time.stop('onSectionAjaxComplete');
 		},
 		addItem: function(item) {			
@@ -89,6 +90,7 @@ Spaz.Section.init = function() {
 			// time.start('initSuggestions');
 			Spaz.Editor.initSuggestions();
 			// time.stop('initSuggestions');
+
 			
 			// time.stop('cleanup');
 			

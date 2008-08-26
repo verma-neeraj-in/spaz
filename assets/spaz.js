@@ -213,7 +213,7 @@ Spaz.initialize = function() {
 	Spaz.Sys.initNetworkConnectivityCheck();
 	
 	// mem monitor/gc
-	Spaz.Sys.initMemcheck();
+	// Spaz.Sys.initMemcheck();
 	
 	
 	
