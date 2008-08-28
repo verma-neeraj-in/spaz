@@ -360,6 +360,7 @@ Spaz.UI.setSelectedTab = function(tab) {
 Spaz.UI.reloadCurrentTab = function(force, reset) {
 	Spaz.dump('reloading the current tab');
 	Spaz.Data.loadDataForTab(Spaz.UI.selectedTab, force, reset);
+   // alert('pausing @ loadDataForTab');
 }
 
 

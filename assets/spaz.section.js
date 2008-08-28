@@ -52,12 +52,14 @@ Spaz.Section.init = function() {
 			Spaz.dump('URLs:::'+this.urls.toString());
 			
 			// time.start('getDataForTimeline');
-			Spaz.Data.getDataForTimeline(this, force)
+			Spaz.Data.getDataForTimeline(this, force);
+         // alert('pausing @ getDataForTimeline');
 			// time.stop('getDataForTimeline');
 		},
 		onAjaxComplete: function(url,xhr,msg){
 			// time.start('onSectionAjaxComplete');
 			Spaz.Data.onSectionAjaxComplete(this,url,xhr,msg);
+         // alert('pausing @ onSectionAjaxComplete');
 			// air.trace('Triggering UNREAD_COUNT_CHANGED');
 			// time.stop('onSectionAjaxComplete');
 		},
@@ -79,16 +81,19 @@ Spaz.Section.init = function() {
 			}
 			
 			Spaz.UI.addItemToTimeline(item, this);
+         // alert('pausing @ addItemToTimeline');
 		},
 		cleanup: function(attribute){
 			
 			// time.start('cleanup');
 			// time.start('cleanupTimeline');
 			Spaz.UI.cleanupTimeline(this.timeline);
+         // alert('pausing @ cleanupTimeline');
 			// time.stop('cleanupTimeline');
 			
 			// time.start('initSuggestions');
 			Spaz.Editor.initSuggestions();
+         // alert('pausing @ initSuggestions');
 			// time.stop('initSuggestions');
 
 			
