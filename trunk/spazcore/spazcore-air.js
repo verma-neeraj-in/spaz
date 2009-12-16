@@ -2813,25 +2813,25 @@ sc.helpers.getRelativeTime = function(time_value, use_dateparse) {
 	var delta = parseInt( (now.getTime() - parsed_date.getTime()) / 1000, 10);
 	
 	if (delta < 10) {
-		return 'Just now';
+		return 'now';
 	} else if(delta < 60) {
-		return delta.toString() +' sec ago';
+		return delta.toString() +'s';
 	} else if(delta < 120) {
-		return '1 min ago';
+		return '1m';
 	} else if(delta < (45*60)) {
-		return Math.round(parseInt(delta / 60, 10)).toString() + ' min ago';
+		return Math.round(parseInt(delta / 60, 10)).toString() + 'm';
 	} else if(delta < (90*60)) {
-		return '1 hr ago';
+		return '1h';
 	} else if(delta < (24*60*60)) {
 		if (Math.round(delta / 3600) === 1) {
-			return '2 hr ago';
+			return '2h';
 		} else {
-			return Math.round(delta / 3600).toString() + ' hr ago';
+			return Math.round(delta / 3600).toString() + 'h';
 		}
 	} else if(delta < (48*60*60)) {
-		return '1 day ago';
+		return '1d';
 	} else {
-		return Math.round(delta / 86400).toString() + ' days ago';
+		return Math.round(delta / 86400).toString() + 'd';
 	}
 };
 
